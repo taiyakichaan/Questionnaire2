@@ -1,31 +1,53 @@
-<!DOCTYPE HTML>
 
-<html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
+    @extends('layouts.app')　　　　　　　　　　　　　　　　　　
+
+    @section('content')
     
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Posts</title>
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        <link rel="stylesheet" href="/css/app.css">
-    </head>
-    
-        <body>
-        <h1 class="title">
-            {{ $post->title }}
-        </h1>
-        <div class="content">
-            <div class="_post">
-                <h3>アンケート</h3>
-                <p>{{ $post->aim }}</p>    
-            </div>
-        </div>
+    <body>
+         <body>
+            
         
-        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集する</a>]</p>
+           <p>投稿者:{{ $post->user->name }}</p>
+            <div class="title">
+                <h2>アンケートのタイトル</h2>
+               <p>{{$post->title}} </p>
+            </div>
+            
+            <div class="aim">
+                <h2>アンケートの目的</h2>
+            　  <p>{{$post->aim}}</p>
+            </div>
+            
+            <div class=area>
+                 <h2>分野</h2>
+                <p>{{$post->area}}</p>
+             </div>   
+             
+            <div class=target>
+                 <h2>回答対象者</h2>
+                 　<h3>分野</h3>
+                   <p>{{$post->target_area}}</p>
+                       
+            　　　<h3>年齢層</h3>    
+                    <p>{{$post->target_ages}}</p>
+                    　 
+                     
+                　<h3>性別</h3>
+                    <p>{{$post->target_gender}}</p>
+
+             <div class=googleform>
+                 <iframe src="{{$post->link}}" width="640" height="1376" frameborder="0" marginheight="0" marginwidth="0"></iframe>
+             </div>     
+          </div>
+            
+             <p class="edit"><a href="/posts/{{ $post->id }}/edit">投稿を編集する</a></p>
         
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/">ホームへ戻る</a>
         </div>
+        
+       
     </body>
-</html>
+    
+    @endsection
+    

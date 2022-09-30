@@ -1,23 +1,33 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
+    @section('content')
     
-    <head>
-        <meta charset "utf-8">
-        <title>くえすちょねあ</title>
-         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-    </head>
-    
-    <body>
+
+       @guest
+    <h5>
+                        ようこそゲストさん！
+                    </h5>
+                    @else
+                    <h5>
+                        ようこそ{{Auth::user()->name}}さん！
+                        
+                    </h5>
+                    @endguest
+
+          
         <h1>くえすちょねあ</h1>
         
-        <a href='/posts/create'>アンケートを投稿する</a>
+      
         
+        <p><a href='/posts/create'>アンケートを投稿する</a></p>
+        
+        <p><a href='/posts/userprofile'>プロフィール</a></p>
+         
         <div class=posts>
             
             @foreach($posts as $post)
             <div class=post>
+               <small><a href='/posts/user/{{$post->user_id}}'>{{ $post->user->name }}</a></small>
                 <h2 class=titile> <a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h2>
                 <p calss=body>{{$post->body}}</p>
             </div>    
@@ -28,6 +38,7 @@
          <div class='paginate'>
             {{ $posts->links() }}
          </div>
-    </body>
+      
     
-</html>
+    
+    @endsection
