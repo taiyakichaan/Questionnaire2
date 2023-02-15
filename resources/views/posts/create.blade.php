@@ -4,7 +4,7 @@
 
     @section('content')
     
-    <body>
+    <body style="text-align:center">
         <form action="/posts" method="POST">
             @csrf
             
@@ -12,23 +12,46 @@
             <p calss="error_message">入力内容をご確認ください。</p>
             @endif
             
+            
             <input type="hidden" name="post[user_id]" value="{{ Auth::user()->id }}"/>
 
-            <div class="title">
-                <h2>アンケートのタイトル</h2>
-                <input type="text" name="post[title]" placeholder="アンケートのタイトルを入力"  value="{{ old('post.title') }}"> 
-                <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
+ 
+        <div class="title">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                        <label>１．アンケートのタイトル</label>
+                        <input type="text" class="form-control" name="post[title]" size="100" style="text-align:center" style="width:500px" value="{{ old('post.title') }}"> 
+                       <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="aim">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                        <label>２．アンケートの目的</label>
+                        <textarea class="form-control" name="post[aim]" size="100" style="text-align:center" style="text-align:center" value="{{ old('post.title') }}"> </textarea>
+                       <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                 
             </div>
             
-            <div class="aim">
-                <h2>アンケートの目的</h2>
-            　  <textarea name="post[aim]" placeholder="何のためのアンケートなのか、アンケート結果を何に用いるのかなどを入力" value="{{ old('post.aim') }}"></textarea> 
-            　  <p class="aim__error" style="color:red">{{ $errors->first('post.aim') }}</p>
-            </div>
-            
-            <div class=area>
-                 <h2>分野</h2>
-                     <select name="post[area]">
+
+        <div class="area">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                        <br><label>３．質問分野</label></br>
+                         <select name="post[area]">
                       
                     　　<option value="法学系">法学系</option>
                         <option value="経営学系">経営学系</option>
@@ -48,18 +71,28 @@
                         <option value="芸術学系">芸術学系</option>
                         <option value="その他">その他</option>
                      </select>
-            </div>   
-             
-            <div class=target>
-                 <h2>回答対象者</h2>
-                 　<h3>分野</h3>
+                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+ 　
+        <div class="target">
+            <div class="col-lg" style="text-align:center">
+                <form>
+                    <div class="form-group">
+                        <br><label>４．回答対象者</label></br>
+                      　<br><label>分野</label></br>
                      <select name="post[target_area]">
                        
                         <option value="指定なし">指定なし</option>                 
                         <option value="今回の質問分野を専攻している・していた人">今回の質問分野を専攻している・していた人</option>   
                         <option value="今回の質問分野以外専攻している・していた人">今回の質問分野以外専攻している・していた人</option> 
                     </select>
-            　　　<h3>年齢層</h3>    
+            　　　<br><label>年齢層</label></br>
                     　<select name="post[target_ages]">
                     　 
                         <option value="指定なし">指定なし</option> 
@@ -68,7 +101,7 @@
                     　　<option value="50代~60代">50代~60代</option> 
                     　　<option value="70代以降">70代以降</option>
                     </select>
-                　<h3>性別</h3>
+                　<br><label>性別</label></br>
                    　 <select name="post[target_gender]">
                       
                         <option value="指定なし">指定なし</option> 
@@ -77,18 +110,44 @@
                     　　<option value="LGBTs">LGBTs</option> 
                     </select>
                     
-             
-             
-             <div class=googleform name="post[link]">
-                 <h3>Google FormのURL</h3>
-                 <input type="text" name="post[link]"  value="{{ old('post.link') }}"> 
-             </div>     
+                    </div>
+                </form>
             </div>
-            
-         <input type="submit" value="保存"/>
-        </form>
+        </div>
+    </div>
+
+  
+        <div class="url">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                        <br><label>５．Google FormのURL</label></br>
+                        <input type="text" name="post[link]" style="width:500px" value="{{ old('post.link') }}"> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+          
+         <form>
+         <input type="submit"value="保存"/>
+         </form>
         
-        <div class="back">[<a href="/">ホームへ戻る</a>]</div>     
+     
+        <div class="url">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                     <div class="back" style="text-align:center"> 
+                        <a href="/"> 
+                            <i class="fa-solid fa-house"></i>ホームへ戻る</a></div>     
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+          
+        
 
     </body>
     

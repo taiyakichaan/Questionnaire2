@@ -1,44 +1,46 @@
     @extends('layouts.app')　　　　　　　　　　　　　　　　　　
 
     @section('content')
-    
 
-       @guest
-    <h5>
-                        ようこそゲストさん！
-                    </h5>
-                    @else
-                    <h5>
-                        ようこそ{{Auth::user()->name}}さん！
-                        
-                    </h5>
-                    @endguest
-
-          
-        <h1>くえすちょねあ</h1>
-        
-      
-        
-        <p><a href='/posts/create'>アンケートを投稿する</a></p>
-        
-        <p><a href='/posts/userprofile'>プロフィール</a></p>
          
-        <div class=posts>
-            
+    <div style="text-align: center"  class=posts>
+        
             @foreach($posts as $post)
-            <div class=post>
-               <small><a href='/posts/user/{{$post->user_id}}'>{{ $post->user->name }}</a></small>
-                <h2 class=titile> <a href="/posts/{{ $post->id }}">{{ $post->title }}</a></h2>
-                <p calss=body>{{$post->body}}</p>
+            <div class="card-deck">
+                
+             <div class="mx-auto">
+                 <div class="card-header">タイトル：<a href="/posts/{{ $post->id }}">{{ $post->title }}</a></div>
+                    
+                    <div class="card-body">
+                   投稿者：<a href='/posts/user/{{$post->user_id}}'>{{ $post->user->name }}</a></div>
+                 　質問分野： {{$post->area}}
+                 　<p>投稿日時：{{$post->created_at}}</p>
+                    </div>
+                </div>
             </div>    
             @endforeach
             
+       
+        <div class="counter" style="text-align:center">
+            {{ $posts->total() }}件中
+            {{ $posts->firstItem() }}〜{{ $posts->lastItem() }} 件目を表示
         </div>
         
-         <div class='paginate'>
-            {{ $posts->links() }}
-         </div>
+         <div class="d-flex justify-content-center">
+             {{ $posts->links() }}
+        </div>     
+    </div>
       
-    
-    
+      <div class="url">
+            <div class="col-lg">
+                <form>
+                    <div class="form-group">
+                     <div class="back" style="text-align:center"> 
+                        <a href="/"> 
+                            <i class="fa-solid fa-house"></i>ホームへ戻る</a></div>     
+                    </div>
+                </form>
+            </div>
+        </div>
+        
     @endsection

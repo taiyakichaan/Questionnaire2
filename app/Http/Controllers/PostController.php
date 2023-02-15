@@ -10,9 +10,14 @@ use Auth;
 
 class PostController extends Controller
 {
+      public function howtouse()
+    {
+        return view('posts/howtouse');
+    }
+    
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(5)]);
     }
     
     public function show(Post $post)
@@ -58,5 +63,10 @@ class PostController extends Controller
     public function unlogin()
     {
         return view('post/unlogin');
+    }
+    
+     public function userprofile()
+    {
+        return view('posts/userprofile');
     }
 }

@@ -20,8 +20,8 @@ class Post extends Model
     'target_ages',
     'target_gender',
     'user_id',
-    'link',
-    ];
+    'link'
+];
   
   public function user(){
     return $this->belongsTo('App\User');
